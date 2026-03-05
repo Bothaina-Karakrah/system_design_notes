@@ -24,7 +24,7 @@ RESTful APIs will be used for client-facing communication, since each endpoint r
 
 ### Endpoints
 
-**Shorten a URL**  
+**1. Shorten a URL**  
 `POST /urls`  
 
 **Request Body**
@@ -42,10 +42,10 @@ RESTful APIs will be used for client-facing communication, since each endpoint r
 }
 ```
 
-**Redirect to the Original URL**
+**2. Redirect to the Original URL**
 `GET /{short_url}` -> -> HTTP 302 Redirect to the original long URL
 
-**Get URL Analytics**
+**3. Get URL Analytics**
 `GET /analytics/{short_url}`
 **Response**
 ```json
