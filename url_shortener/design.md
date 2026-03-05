@@ -14,12 +14,13 @@ Non-functional requirements refer to specifications about how a system operates,
 5. The system should be horizontally scalable.
 
 ## Core Entities
-1. Original URL: The original long URL.
-2. Short URL: The shortened URL .
-User: The user who created the shortened URL.
+1. **Original URL**: The original long URL submitted by the user.
+2. **Short URL**: The shortened version of the original URL.
+3. **User**: The person or system creating the shortened URL.
+4. **Analytics (optional)**: Click counts, timestamps, referrer info.
 
-## API
-We will use Restful for the API, since it is a client facing (not internal) communication and there is no underfetching and overfetching. Here is the API calls:
+## API Design
+RESTful APIs will be used for client-facing communication, since each endpoint returns exactly the expected resource and does not introduce overfetching or underfetching.
 
 ### Endpoints
 
@@ -38,5 +39,23 @@ We will use Restful for the API, since it is a client facing (not internal) comm
 ```json
 {
   "short_url": "http://short.ly/abc123"
+}
+```
+
+**Redirect to the Original URL**
+`GET /{short_url}` -> -> HTTP 302 Redirect to the original long URL
+
+**Get URL Analytics**
+`GET /analytics/{short_url}`
+**Response**
+```json
+{
+  "short_url": "http://short.ly/abc123",
+  "click_count": 120,
+  "last_visited": "2026-03-02T12:45:00Z",
+  "referrers": [
+    "https://google.com",
+    "https://twitter.com"
+  ]
 }
 ```
